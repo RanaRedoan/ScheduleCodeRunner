@@ -1,0 +1,24 @@
+Schedule Code Runner
+
+Developer
+Md. Redoan Hossain Bhuiyan
+
+Contact
+redoanhossain630@gmail.com
+https://github.com/ranaredoan
+https://linkedin.com/in/mdredoanhossainbhuiyan
+
+About This App
+Schedule Code Runner helps users schedule local scripts and code files to run automatically on Windows.
+Supported file types include Python, R, Stata do-files, Batch/CMD files, and direct executables.
+
+Runtime Setup
+After installation, open Settings in the app and configure the runtimes you want to use.
+- Python executable for .py files
+- R executable for .r files
+- Stata executable for .do files
+- Batch/CMD shell if you want to override the default cmd.exe
+- .exe tasks run directly and do not need a runtime path
+
+Support
+If a scheduled task does not run, first confirm that the selected script still exists and that the required runtime path is configured correctly in Settings.

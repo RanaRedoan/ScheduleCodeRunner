@@ -1,0 +1,9 @@
+<Application x:Class="ScheduleCodeRunner.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="AccentBlueBrush" Color="#1A4DA0" />
+        <SolidColorBrush x:Key="DangerBrush" Color="#B72A3B" />
+    </Application.Resources>
+</Application>

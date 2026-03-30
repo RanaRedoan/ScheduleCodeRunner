@@ -1,0 +1,107 @@
+<Window x:Class="ScheduleCodeRunner.App.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Settings"
+        Width="760"
+        Height="470"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#F4F8FF"
+        FontFamily="Segoe UI">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="95" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Grid.ColumnSpan="3"
+                   Margin="0,0,0,12"
+                   FontSize="21"
+                   FontWeight="SemiBold"
+                   Foreground="#1A4DA0"
+                   Text="Runtime Settings" />
+
+        <TextBlock Grid.Row="1"
+                   Grid.ColumnSpan="3"
+                   Margin="0,0,0,16"
+                   Foreground="#35537A"
+                   Text="Configure the runtime executables once. Tasks will use these settings for Python, R, Stata, and Batch/CMD files." />
+
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Foreground="#153E7A" Text="Python (.py)" />
+        <TextBox x:Name="PythonPathTextBox" Grid.Row="2" Grid.Column="1" Height="32" Margin="0,2,8,8" Padding="8,4" BorderBrush="#A8BFDC" />
+        <Button Grid.Row="2" Grid.Column="2" Height="32" Background="#1A4DA0" BorderBrush="#1A4DA0" Click="BrowsePythonButton_Click" Content="Browse" Foreground="White" />
+
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Foreground="#153E7A" Text="R (.r)" />
+        <TextBox x:Name="RPathTextBox" Grid.Row="3" Grid.Column="1" Height="32" Margin="0,2,8,8" Padding="8,4" BorderBrush="#A8BFDC" />
+        <Button Grid.Row="3" Grid.Column="2" Height="32" Background="#1A4DA0" BorderBrush="#1A4DA0" Click="BrowseRButton_Click" Content="Browse" Foreground="White" />
+
+        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Foreground="#153E7A" Text="Stata (.do)" />
+        <TextBox x:Name="StataPathTextBox" Grid.Row="4" Grid.Column="1" Height="32" Margin="0,2,8,8" Padding="8,4" BorderBrush="#A8BFDC" />
+        <Button Grid.Row="4" Grid.Column="2" Height="32" Background="#1A4DA0" BorderBrush="#1A4DA0" Click="BrowseStataButton_Click" Content="Browse" Foreground="White" />
+
+        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Foreground="#153E7A" Text="Batch/CMD" />
+        <TextBox x:Name="BatchShellPathTextBox" Grid.Row="5" Grid.Column="1" Height="32" Margin="0,2,8,8" Padding="8,4" BorderBrush="#A8BFDC" />
+        <Button Grid.Row="5" Grid.Column="2" Height="32" Background="#1A4DA0" BorderBrush="#1A4DA0" Click="BrowseBatchShellButton_Click" Content="Browse" Foreground="White" />
+
+        <Border Grid.Row="6"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Margin="0,4,0,12"
+                Padding="12"
+                Background="#E9F1FD"
+                BorderBrush="#C4D8F5"
+                BorderThickness="1">
+            <StackPanel>
+                <TextBlock Foreground="#153E7A" FontWeight="SemiBold" Text="Direct executables (.exe)" />
+                <TextBlock Margin="0,4,0,0"
+                           Foreground="#35537A"
+                           Text="No runtime path is needed. EXE tasks run directly from the file you select." />
+                <TextBlock Margin="0,4,0,0"
+                           Foreground="#35537A"
+                           Text="Leave Batch/CMD blank to use the default Windows cmd.exe shell." />
+            </StackPanel>
+        </Border>
+
+        <TextBlock x:Name="ValidationTextBlock"
+                   Grid.Row="8"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   VerticalAlignment="Center"
+                   Foreground="#B72A3B" />
+
+        <StackPanel Grid.Row="8"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+            <Button Width="80"
+                    Height="30"
+                    Margin="0,0,8,0"
+                    Background="#1A4DA0"
+                    BorderBrush="#1A4DA0"
+                    Click="SaveButton_Click"
+                    Content="Save"
+                    Foreground="White" />
+            <Button Width="80"
+                    Height="30"
+                    Background="#C6CED9"
+                    BorderBrush="#A5AFBC"
+                    Click="CancelButton_Click"
+                    Content="Cancel"
+                    Foreground="#243447" />
+        </StackPanel>
+    </Grid>
+</Window>

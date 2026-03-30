@@ -1,0 +1,152 @@
+<Window x:Class="ScheduleCodeRunner.App.TaskEditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Task Editor"
+        Width="660"
+        Height="430"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#F4F8FF"
+        FontFamily="Segoe UI">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="180" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Grid.ColumnSpan="3"
+                   Text="Create or Edit Task"
+                   FontSize="21"
+                   FontWeight="SemiBold"
+                   Foreground="#1A4DA0"
+                   Margin="0,0,0,18" />
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Task name" VerticalAlignment="Center" Foreground="#153E7A" />
+        <TextBox x:Name="TaskNameTextBox"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 Grid.ColumnSpan="2"
+                 Height="32"
+                 Margin="0,2,0,8"
+                 Padding="8,4"
+                 BorderBrush="#A8BFDC" />
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Script path" VerticalAlignment="Center" Foreground="#153E7A" />
+        <TextBox x:Name="ScriptPathTextBox"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 Height="32"
+                 Margin="0,2,8,8"
+                 Padding="8,4"
+                 BorderBrush="#A8BFDC" />
+        <Button Grid.Row="2"
+                Grid.Column="2"
+                Height="32"
+                Content="Browse"
+                Click="BrowseButton_Click"
+                Background="#1A4DA0"
+                Foreground="White"
+                BorderBrush="#1A4DA0" />
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Arguments" VerticalAlignment="Center" Foreground="#153E7A" />
+        <TextBox x:Name="ArgumentsTextBox"
+                 Grid.Row="3"
+                 Grid.Column="1"
+                 Grid.ColumnSpan="2"
+                 Height="32"
+                 Margin="0,2,0,8"
+                 Padding="8,4"
+                 BorderBrush="#A8BFDC" />
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Date and time" VerticalAlignment="Center" Foreground="#153E7A" />
+        <DatePicker x:Name="DatePickerControl"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Height="32"
+                    Margin="0,2,8,8" />
+        <StackPanel Grid.Row="4"
+                    Grid.Column="2"
+                    Orientation="Horizontal"
+                    Height="32"
+                    Margin="0,2,0,8"
+                    ToolTip="Pick the time using 12-hour format with AM or PM.">
+            <ComboBox x:Name="HourComboBox"
+                      Width="54"
+                      Height="32"
+                      BorderBrush="#A8BFDC" />
+            <TextBlock Text=":"
+                       VerticalAlignment="Center"
+                       Margin="8,0"
+                       Foreground="#153E7A"
+                       FontWeight="SemiBold" />
+            <ComboBox x:Name="MinuteComboBox"
+                      Width="62"
+                      Height="32"
+                      BorderBrush="#A8BFDC" />
+            <ComboBox x:Name="MeridiemComboBox"
+                      Width="64"
+                      Height="32"
+                      Margin="8,0,0,0"
+                      BorderBrush="#A8BFDC" />
+        </StackPanel>
+
+        <TextBlock x:Name="LocalTimeHintTextBlock"
+                   Grid.Row="5"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   Margin="0,0,0,12"
+                   Foreground="#35537A" />
+
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Run mode" VerticalAlignment="Top" Margin="0,6,0,0" Foreground="#153E7A" />
+        <ComboBox x:Name="VisibilityComboBox"
+                  Grid.Row="6"
+                  Grid.Column="1"
+                  Grid.ColumnSpan="2"
+                  Height="32"
+                  Margin="0,2,0,8"
+                  SelectedIndex="0">
+            <ComboBoxItem Content="Hidden" />
+            <ComboBoxItem Content="Visible" />
+        </ComboBox>
+
+        <TextBlock x:Name="ValidationTextBlock"
+                   Grid.Row="7"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   VerticalAlignment="Center"
+                   Foreground="#B72A3B" />
+        <StackPanel Grid.Row="7"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button Width="80"
+                    Height="30"
+                    Margin="0,0,8,0"
+                    Content="Save"
+                    Click="SaveButton_Click"
+                    Background="#1A4DA0"
+                    Foreground="White"
+                    BorderBrush="#1A4DA0" />
+            <Button Width="80"
+                    Height="30"
+                    Content="Cancel"
+                    Click="CancelButton_Click"
+                    Background="#C6CED9"
+                    Foreground="#243447"
+                    BorderBrush="#A5AFBC" />
+        </StackPanel>
+    </Grid>
+</Window>

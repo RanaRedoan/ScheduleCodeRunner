@@ -1,0 +1,17 @@
+bin/
+obj/
+.vs/
+
+# Build and publish output
+artifacts/
+
+# User-specific files
+*.user
+*.suo
+
+# Test and coverage output
+TestResults/
+coverage/
+
+# Local stray file
+src/ScheduleCodeRunner.Core/Models/test.txt

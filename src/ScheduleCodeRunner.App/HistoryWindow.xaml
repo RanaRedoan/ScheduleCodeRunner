@@ -1,0 +1,43 @@
+<Window x:Class="ScheduleCodeRunner.App.HistoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converters="clr-namespace:ScheduleCodeRunner.App.Converters"
+        Title="Execution History"
+        Width="960"
+        Height="520"
+        WindowStartupLocation="CenterOwner"
+        Background="#F4F8FF"
+        FontFamily="Segoe UI">
+    <Window.Resources>
+        <converters:DateTimeOffsetDisplayConverter x:Key="DateTimeOffsetDisplayConverter" />
+    </Window.Resources>
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="TitleTextBlock"
+                   Grid.Row="0"
+                   Margin="0,0,0,10"
+                   FontSize="20"
+                   FontWeight="SemiBold"
+                   Foreground="#1A4DA0" />
+
+        <DataGrid x:Name="HistoryGrid"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  HeadersVisibility="Column">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Started" Binding="{Binding StartedAt, Converter={StaticResource DateTimeOffsetDisplayConverter}, ConverterParameter=History}" Width="210" />
+                <DataGridTextColumn Header="Finished" Binding="{Binding FinishedAt, Converter={StaticResource DateTimeOffsetDisplayConverter}, ConverterParameter=History}" Width="210" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100" />
+                <DataGridTextColumn Header="Exit Code" Binding="{Binding ExitCode}" Width="100" />
+                <DataGridTextColumn Header="Output" Binding="{Binding OutputExcerpt}" Width="*" />
+                <DataGridTextColumn Header="Error" Binding="{Binding ErrorExcerpt}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

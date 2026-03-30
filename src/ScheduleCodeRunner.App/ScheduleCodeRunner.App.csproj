@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\ScheduleCodeRunner.Core\ScheduleCodeRunner.Core.csproj" />
+    <ProjectReference Include="..\ScheduleCodeRunner.Worker\ScheduleCodeRunner.Worker.csproj"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\App.ico</ApplicationIcon>
+    <WorkerOutputDir>$(MSBuildThisFileDirectory)..\ScheduleCodeRunner.Worker\bin\$(Configuration)\net8.0\</WorkerOutputDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\app-logo.png" />
+  </ItemGroup>
+
+  <Target Name="CopyWorkerOutput" AfterTargets="Build">
+    <ItemGroup>
+      <WorkerFiles Include="$(WorkerOutputDir)ScheduleCodeRunner.Worker.exe"
+                   Condition="Exists('$(WorkerOutputDir)ScheduleCodeRunner.Worker.exe')" />
+      <WorkerFiles Include="$(WorkerOutputDir)ScheduleCodeRunner.Worker.dll"
+                   Condition="Exists('$(WorkerOutputDir)ScheduleCodeRunner.Worker.dll')" />
+      <WorkerFiles Include="$(WorkerOutputDir)ScheduleCodeRunner.Worker.deps.json"
+                   Condition="Exists('$(WorkerOutputDir)ScheduleCodeRunner.Worker.deps.json')" />
+      <WorkerFiles Include="$(WorkerOutputDir)ScheduleCodeRunner.Worker.runtimeconfig.json"
+                   Condition="Exists('$(WorkerOutputDir)ScheduleCodeRunner.Worker.runtimeconfig.json')" />
+    </ItemGroup>
+    <Copy SourceFiles="@(WorkerFiles)"
+          DestinationFolder="$(OutDir)"
+          SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>

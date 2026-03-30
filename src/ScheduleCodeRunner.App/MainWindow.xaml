@@ -1,0 +1,153 @@
+<Window x:Class="ScheduleCodeRunner.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converters="clr-namespace:ScheduleCodeRunner.App.Converters"
+        mc:Ignorable="d"
+        Title="Schedule Code Runner"
+        Width="1180"
+        Height="700"
+        MinWidth="960"
+        MinHeight="580"
+        Loaded="Window_Loaded"
+        Background="#F3F8FF"
+        FontFamily="Segoe UI">
+    <Window.Resources>
+        <converters:DateTimeOffsetDisplayConverter x:Key="DateTimeOffsetDisplayConverter" />
+        <converters:TaskStatusToBrushConverter x:Key="TaskStatusToBrushConverter" />
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#1A4DA0" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderBrush" Value="#1A4DA0" />
+            <Setter Property="Padding" Value="12,7" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Margin" Value="0,0,8,0" />
+        </Style>
+        <Style x:Key="DangerButtonStyle" TargetType="Button" BasedOn="{StaticResource PrimaryButtonStyle}">
+            <Setter Property="Background" Value="#B72A3B" />
+            <Setter Property="BorderBrush" Value="#B72A3B" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#1A4DA0" Padding="14">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Image Width="34"
+                       Height="34"
+                       Margin="0,0,10,0"
+                       Source="Assets/app-logo.png" />
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Schedule Code Runner"
+                               FontSize="23"
+                               FontWeight="SemiBold"
+                               Foreground="White" />
+                    <TextBlock Text="Simple scheduling for scripts and code files"
+                               Foreground="#DDE9FF"
+                               FontSize="13" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="SettingsButton"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Content="Settings"
+                            Click="SettingsButton_Click"
+                            Background="#2D65C3"
+                            BorderBrush="#2D65C3" />
+                    <Button x:Name="NewTaskButton"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Content="New Task"
+                            Click="NewTaskButton_Click"
+                            Background="#2D65C3"
+                            BorderBrush="#2D65C3" />
+                    <Button x:Name="RefreshButton"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Content="Refresh"
+                            Click="RefreshButton_Click"
+                            Background="#3A77DD"
+                            BorderBrush="#3A77DD"
+                            Margin="0,0,0,0" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" Margin="14,14,14,10" BorderBrush="#C4D8F5" BorderThickness="1" Background="White">
+            <DataGrid x:Name="TasksGrid"
+                      AutoGenerateColumns="False"
+                      HeadersVisibility="Column"
+                      CanUserAddRows="False"
+                      SelectionMode="Single"
+                      IsReadOnly="True"
+                      GridLinesVisibility="Horizontal"
+                      SelectionChanged="TasksGrid_SelectionChanged"
+                      RowHeaderWidth="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Script Name" Binding="{Binding Name}" Width="190" />
+                    <DataGridTextColumn Header="Script Path" Binding="{Binding ScriptPath}" Width="3*" />
+                    <DataGridTextColumn Header="Scheduled Time" Binding="{Binding ScheduledAt, Converter={StaticResource DateTimeOffsetDisplayConverter}}" Width="220" />
+                    <DataGridTemplateColumn Header="Status" Width="130">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Status}"
+                                           FontWeight="SemiBold"
+                                           Foreground="{Binding Status, Converter={StaticResource TaskStatusToBrushConverter}}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Last Result" Binding="{Binding LastResult}" Width="2*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <Border Grid.Row="2" Margin="14,0,14,14" Background="#EAF2FE" BorderBrush="#C4D8F5" BorderThickness="1" Padding="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="StatusMessageTextBlock"
+                           VerticalAlignment="Center"
+                           Foreground="#21436D"
+                           Text="Select a task to edit, run, delete, or view history." />
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button x:Name="RunNowButton"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Content="Run Now"
+                            Click="RunNowButton_Click"
+                            IsEnabled="False" />
+                    <Button x:Name="EditButton"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Content="Edit"
+                            Click="EditButton_Click"
+                            IsEnabled="False" />
+                    <Button x:Name="HistoryButton"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Content="History"
+                            Click="HistoryButton_Click"
+                            IsEnabled="False" />
+                    <Button x:Name="DeleteButton"
+                            Style="{StaticResource DangerButtonStyle}"
+                            Content="Delete"
+                            Click="DeleteButton_Click"
+                            IsEnabled="False"
+                            Margin="0,0,0,0" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
