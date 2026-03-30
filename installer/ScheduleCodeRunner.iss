@@ -1,5 +1,5 @@
 #define MyAppName "Schedule Code Runner"
-#define MyAppVersion "1.0.0"
+#define MyAppVersion "1.1.0"
 #define MyAppPublisher "Md. Redoan Hossain Bhuiyan"
 #define MyAppExeName "ScheduleCodeRunner.App.exe"
 
