@@ -19,7 +19,7 @@
 <p align="center">
   <a href="https://github.com/RanaRedoan/ScheduleCodeRunner/releases/latest"><strong>Download Installer</strong></a>
   &nbsp;|&nbsp;
-  <a href="https://github.com/RanaRedoan/ScheduleCodeRunner/releases/tag/v1.0.0"><strong>View Release</strong></a>
+  <a href="https://github.com/RanaRedoan/ScheduleCodeRunner/releases/tag/v1.1.0"><strong>View Release</strong></a>
 </p>
 
 ---

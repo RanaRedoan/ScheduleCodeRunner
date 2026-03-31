@@ -41,8 +41,6 @@ Invoke-Step "Publish app" {
         -r $RuntimeIdentifier `
         --no-restore `
         --self-contained true `
-        /p:PublishSingleFile=true `
-        /p:IncludeNativeLibrariesForSelfExtract=true `
         -o $appPublishDir
 }
 
@@ -52,8 +50,6 @@ Invoke-Step "Publish worker" {
         -r $RuntimeIdentifier `
         --no-restore `
         --self-contained true `
-        /p:PublishSingleFile=true `
-        /p:IncludeNativeLibrariesForSelfExtract=true `
         -o $workerPublishDir
 }
 
